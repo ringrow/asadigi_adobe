@@ -1392,19 +1392,6 @@ function sc_trackReadPrevPageExt(sc_prevPageName){
 	}catch(e){}
 	return false;
 }
-
-/*
-	site search sp
-*/
-function sc_getSiteSearchKwSp(s, keyParam) { // sp 20141224
-	try {
-		if(document.querySelector("#searchlist p.ErrorMsg")){
-			 sc_addEvents("event30");
-		}
-		return s.Util.getQueryParam(keyParam);
-	}catch(e){}
-	return "";
-}
 /************************** INIT SECTION **************************/
 function sc_coreInit(){
 /**
