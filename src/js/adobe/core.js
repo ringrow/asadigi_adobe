@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2019/06/20
+// Last Modified: 2019/06/25
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -445,50 +445,6 @@ function s_doPlugins(s) {
 
 	s.prop30 = s.eVar30 = parseInt(s.currentD, 10);
 
-	/* Site search */
-	var sc_l_hn = location.hostname;
-	var sc_sch_kwd = '';
-	if (sc_l_hn == "digital.asahi.com") {
-		if (sc_l_pn == "/article_search/list.html") {
-			try {
-				sc_sch_kwd = document.srchform2.keyword2.value;
-				var sc_str = $("#WebSearchResult").text();
-				if (sc_str && sc_str == unescape("\u691c\u7d22\u7d50\u679c\u304c\u3042\u308a\u307e\u305b\u3093\u3002")) {
-					sc_addEvents("event30");
-				}
-			}catch(e){
-			}
-		} else if (sc_l_pn == "/sp/article_search/list.html") { // sp 20141224
-			sc_sch_kwd = sc_getSiteSearchKwSp(s, "Keyword");
-		}
-	} else if (sc_l_hn == "sitesearch.asahi.com") {
-		if (sc_l_pn == "/.cgi/sitesearch/sitesearch.pl" || sc_l_pn == "/.cgi/sitesearch/sitesearch2.pl") {	//20160802 add abtest sitesearch2.pl
-			try {
-				sc_sch_kwd = $("#Focus").not(".blur").val(); 	//20160816
-				var sc_str = $("#SiteSearchResult").children().text();
-				if (sc_str && sc_str == unescape("\u691c\u7d22\u7d50\u679c\u304c\u3042\u308a\u307e\u305b\u3093\u3002")) {
-					sc_addEvents("event30");
-				}
-			}catch(e){
-			}
-		} else if (sc_l_pn == "/.cgi/sp/sitesearch/sitesearch.pl" || sc_l_pn == "/.cgi/sp/sitesearch/sitesearch2.pl") { //20160802 add abtest sitesearch2.pl
-			sc_sch_kwd = sc_getSiteSearchKwSp(s, "Keywords");
-		}
-	}
-
-	function sc_getSiteSearchKwSp(s, keyParam) { // sp 20141224
-		try {
-			if ($(".ErrorMsg").length) sc_addEvents("event30");
-			return s.Util.getQueryParam(keyParam);
-		}catch(e){}
-		return "";
-	}
-
-	if (typeof sc_sch_kwd !='undefined' && sc_sch_kwd ) {
-		s.prop24 = sc_sch_kwd;
-		s.eVar24 = "D=c24";
-	}
-
 	/* keywords of articles */
 	if(s.prop53){
 		if(s.prop53.length > 33){
@@ -598,6 +554,7 @@ function s_doPlugins(s) {
 	s.hier1 = "D=pageName";
 	s.eVar8 = "D=c10";
 	s.eVar11 = "D=c11";
+	s.eVar24 = "D=c24";
 	s.eVar31 = "D=c31";
 	s.eVar35 = "D=c35";
 	s.eVar49 = "D=c49";
@@ -750,6 +707,7 @@ function s_doPlugins(s) {
 if (typeof(sc_asa_digi_events) != "undefined" && sc_asa_digi_events) s.events = sc_asa_digi_events;
 if (typeof(sc_asa_digi_prop18) != "undefined" && sc_asa_digi_prop18) s.prop18 = sc_asa_digi_prop18;
 if (typeof(sc_asa_digi_prop19) != "undefined" && sc_asa_digi_prop19) s.prop19 = sc_asa_digi_prop19;
+if (typeof(sc_asa_digi_prop24) != "undefined" && sc_asa_digi_prop24) s.prop24 = sc_asa_digi_prop24;
 if (typeof(sc_asa_digi_prop32) != "undefined" && sc_asa_digi_prop32) s.prop32 = sc_asa_digi_prop32;
 if (typeof(sc_asa_digi_prop33) != "undefined" && sc_asa_digi_prop33) s.prop33 = sc_asa_digi_prop33;
 if (typeof(sc_asa_digi_prop35) != "undefined" && sc_asa_digi_prop35) s.prop35 = sc_asa_digi_prop35;
@@ -1433,6 +1391,19 @@ function sc_trackReadPrevPageExt(sc_prevPageName){
 		}
 	}catch(e){}
 	return false;
+}
+
+/*
+	site search sp
+*/
+function sc_getSiteSearchKwSp(s, keyParam) { // sp 20141224
+	try {
+		if(document.querySelector("#searchlist p.ErrorMsg")){
+			 sc_addEvents("event30");
+		}
+		return s.Util.getQueryParam(keyParam);
+	}catch(e){}
+	return "";
 }
 /************************** INIT SECTION **************************/
 function sc_coreInit(){
