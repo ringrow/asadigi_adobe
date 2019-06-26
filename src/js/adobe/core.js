@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2019/06/25
+// Last Modified: 2019/06/26
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -554,7 +554,6 @@ function s_doPlugins(s) {
 	s.hier1 = "D=pageName";
 	s.eVar8 = "D=c10";
 	s.eVar11 = "D=c11";
-	s.eVar24 = "D=c24";
 	s.eVar31 = "D=c31";
 	s.eVar35 = "D=c35";
 	s.eVar49 = "D=c49";
@@ -564,6 +563,7 @@ function s_doPlugins(s) {
 	if (s.prop18) s.eVar18 = "D=c18";
 	if (s.prop19) s.eVar19 = "D=c19";
 	if (s.prop22) s.eVar22 = "D=c22";
+	if (s.prop24) s.eVar24 = "D=c24";
 	if (s.prop32) s.eVar32 = "D=c32";
 	if (s.prop33) s.eVar33 = "D=c33";
 	if (s.prop34) s.eVar34 = "D=c34";
