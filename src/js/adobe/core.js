@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2019/06/26
+// Last Modified: 2019/07/12
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -38,7 +38,6 @@ var sc_prd_domain_list={
 "edua.asahi.com":     	            "prod",
 "hinotori.asahi.com":               "prod",
 "krs.bz":                           "prod"
-
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
@@ -436,11 +435,11 @@ function s_doPlugins(s) {
 			s.prop9 = s.prop9.replace("Asahi Shimbun Digital[and]", '');
 		} else if (s.prop9.indexOf(unescape(" - \u671d\u65e5\u65b0\u805e\u793e")) > -1) {
 			s.prop9 = s.prop9.replace(unescape(" - \u671d\u65e5\u65b0\u805e\u793e"), '');
+		} else if ((/.*www\.asahi\.com\/relife\/.+/).test(s.prop1)){
+			s.prop9 = s.prop9.replace(/^(.+)[：|:](.+)/,'$1');
 		}
-
 		s.eVar9 = sc_evar_bytes(s.prop9);
 		s.prop9 = sc_prop_bytes(s.prop9);
-
 	}
 
 	s.prop30 = s.eVar30 = parseInt(s.currentD, 10);
