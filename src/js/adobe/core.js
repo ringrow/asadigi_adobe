@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2019/07/12
+// Last Modified: 2019/11/12
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -577,6 +577,7 @@ function s_doPlugins(s) {
 	if (s.prop61) s.eVar61 = s.list1 = "D=c61";
 	if (s.prop66) s.eVar66 = "D=c66";
 	if (s.prop67) s.eVar67 = "D=c67";
+	if (s.prop68) s.eVar68 = "D=c68";
 	if (s.prop72) s.eVar72 = "D=c72";
 	if (s.list2) s.prop20 = s.eVar20 = "D=l2";
 
@@ -732,6 +733,16 @@ if (typeof(sc_asa_digi_prop04) != "undefined" && sc_asa_digi_prop04){
 }
 if (typeof(sc_asa_digi_prop45) != "undefined" && sc_asa_digi_prop45){
 	s.prop45 = sc_asa_digi_prop45;
+}
+/********************************************************************
+ * 33.asahi.com variables
+ *******************************************************************/
+if (typeof(sc_asa_33_event) != "undefined" && sc_asa_33_event){
+	s.events = sc_asa_33_event;
+}
+
+if (typeof(sc_asa_33_prop68) != "undefined" && sc_asa_33_prop68){
+	s.prop68 = sc_asa_33_prop68;
 }
 
 s.doPlugins=s_doPlugins
