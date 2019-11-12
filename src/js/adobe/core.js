@@ -577,6 +577,7 @@ function s_doPlugins(s) {
 	if (s.prop61) s.eVar61 = s.list1 = "D=c61";
 	if (s.prop66) s.eVar66 = "D=c66";
 	if (s.prop67) s.eVar67 = "D=c67";
+	if (s.prop68) s.eVar68 = "D=c68";
 	if (s.prop72) s.eVar72 = "D=c72";
 	if (s.list2) s.prop20 = s.eVar20 = "D=l2";
 
