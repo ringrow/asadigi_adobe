@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2019/12/12
+// Last Modified: 2019/12/13
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -305,6 +305,7 @@ function s_doPlugins(s) {
 	/* article page of asahi-shimbun digital  */
     if (s.prop40) {
     	sc_addEvents("event39,event40");
+    	s.c_w('sc_c50', s.prop40);
     	s.eVar27 = s.eVar40 = "D=c40";
     	s.prop54 = s.eVar54 = "D=c9";
     	s.prop26 = s.eVar26 = "D=server";
@@ -404,6 +405,12 @@ function s_doPlugins(s) {
 			s.c_w('sc_c19_ev', "event12");
 			s.c_w('sc_c65_ev', "event12");
 			s.prop56="1|"+s.currentYear+s.currentM+s.currentD;
+
+			if(s.c_r('sc_c50')){
+			  s.prop50=s.c_r('sc_c50');
+			  s.c_w('sc_c50','',-1)
+			}
+
 		}
 
 		/* cancellation of  paid membership contract */
@@ -614,9 +621,9 @@ function s_doPlugins(s) {
 
 		  ga('ga_tracker.require', 'linker');
 
-		  if (is_dev) {
-	      ga('ga_tracker.require', 'GTM-NQKX8VH');
-		  }
+		  ga('ga_tracker.require', 'GTM-M9HKR39');
+
+		  ga('linker:autoLink', ['asahi.com'], false, true);
 
 			ga('ga_tracker.set', {
 				 'dimension7': s.prop1,
