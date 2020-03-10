@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/02/10
+// Last Modified: 2020/03/09
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -589,6 +589,7 @@ function s_doPlugins(s) {
 	if (s.prop69) s.eVar69 = "D=c69";
 	if (s.prop70) s.eVar70 = "D=c70";
 	if (s.prop72) s.eVar72 = "D=c72";
+	if (s.prop73) s.eVar73 = "D=c73";
 	if (s.list2) s.prop20 = s.eVar20 = "D=l2";
 
 
@@ -734,6 +735,7 @@ if (typeof(sc_asa_digi_prop67) != "undefined" && sc_asa_digi_prop67) s.prop67 = 
 if (typeof(sc_asa_digi_prop69) != "undefined" && sc_asa_digi_prop69) s.prop69 = sc_asa_digi_prop69;
 if (typeof(sc_asa_digi_prop70) != "undefined" && sc_asa_digi_prop70) s.prop70 = sc_asa_digi_prop70;
 if (typeof(sc_asa_digi_prop72) != "undefined" && sc_asa_digi_prop72) s.prop72 = sc_asa_digi_prop72;
+if (typeof(sc_asa_digi_prop73) != "undefined" && sc_asa_digi_prop73) s.prop73 = sc_asa_digi_prop73;
 if (typeof(sc_asa_digi_eVar10) != "undefined" && sc_asa_digi_eVar10) s.eVar10 = sc_asa_digi_eVar10;
 if (typeof(sc_asa_digi_eVar14) != "undefined" && sc_asa_digi_eVar14) s.eVar14 = sc_asa_digi_eVar14;
 if (typeof(sc_asa_digi_products) != "undefined" && sc_asa_digi_products) s.products = sc_asa_digi_products;
@@ -1278,16 +1280,6 @@ s.getHashClid = function () {
 	}
 	return clidVal;
 };
-
-function sc_trackWelcomeImg(id,evn){
-	s.linkTrackVars="prop73,eVar73,events";
-	s.linkTrackEvents="event46,event47,event48,event49";
-	s.prop73=id;
-	s.eVar73='D=c73';
-	s.events=evn;
-	s.tl(this,'o','welcome_image');
-	s.prop73=s.eVar73=s.events='';
-}
 
 function sc_trackClickBtn(id,btn){
 	s.linkTrackVars="prop13,eVar13,events";
