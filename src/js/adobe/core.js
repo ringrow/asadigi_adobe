@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/03/09
+// Last Modified: 2020/05/07
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -38,7 +38,8 @@ var sc_prd_domain_list={
 "edua.asahi.com":     	            "prod",
 "hinotori.asahi.com":               "prod",
 "krs.bz":                           "prod",
-"craft.asahi.com":                  "prod"
+"craft.asahi.com":                  "prod",
+"www.41fp.com":                     "prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
@@ -177,6 +178,8 @@ function s_doPlugins(s) {
 	s.prop22 = s.Util.getQueryParam("iref");
 	var sc_ref = s.Util.getQueryParam("ref");
 	var sc_cid = s.Util.getQueryParam("cid");
+	var sc_oai = s.Util.getQueryParam("oai");
+
 	if(sc_ref!=""){
 		s.prop4	 = sc_ref;
 		s.cookieWrite("sc_prm_ref",	s.prop4.substring(0,50));
@@ -185,10 +188,15 @@ function s_doPlugins(s) {
 		s.prop45 = sc_cid;
 		s.cookieWrite("sc_prm_cid",	s.prop45.substring(0,50));
 	}
+	if(sc_oai!=""){
+		s.prop32 = sc_oai;
+	}
 
 	s.prop6=s.getFolderName(1);
 	s.prop7=s.getFolderName(2);
 	s.prop8=s.getFolderName(3);
+	s.prop14=s.getFolderName(4);
+
 
 	if(typeof _dtm_orverride_variables !="undefined" && typeof _dtm_orverride_variables.title !="undefined" && _dtm_orverride_variables.title.length>0){
 		s.prop9=_dtm_orverride_variables.title;
@@ -472,6 +480,7 @@ function s_doPlugins(s) {
 		s.prop6=decodeURI(s.prop6);
 		s.prop7=decodeURI(s.prop7);
 		s.prop8=decodeURI(s.prop8);
+		s.prop14=decodeURI(s.prop14);
 		s.eVar7=s.prop1;//20161018
 	}catch(e){}
 
@@ -680,6 +689,10 @@ function s_doPlugins(s) {
 				 'dimension56': s.prop61,
 				 'dimension57': s.eVar77,
 				 'dimension58': s.eVar78,
+				 'dimension59': s.eVar10,
+				 'dimension60': s.prop14,
+				 'dimension61': s.prop32,
+				 'dimension62': s.prop32,
 				 'metric2': s.events.split(",").includes("event12")?1:"",
 				 'metric3': s.events.split(",").includes("event13")?1:"",
 				 'metric4': s.events.split(",").includes("event22")?1:"",
@@ -719,7 +732,6 @@ if (typeof(sc_asa_digi_events) != "undefined" && sc_asa_digi_events) s.events = 
 if (typeof(sc_asa_digi_prop18) != "undefined" && sc_asa_digi_prop18) s.prop18 = sc_asa_digi_prop18;
 if (typeof(sc_asa_digi_prop19) != "undefined" && sc_asa_digi_prop19) s.prop19 = sc_asa_digi_prop19;
 if (typeof(sc_asa_digi_prop24) != "undefined" && sc_asa_digi_prop24) s.prop24 = sc_asa_digi_prop24;
-if (typeof(sc_asa_digi_prop32) != "undefined" && sc_asa_digi_prop32) s.prop32 = sc_asa_digi_prop32;
 if (typeof(sc_asa_digi_prop33) != "undefined" && sc_asa_digi_prop33) s.prop33 = sc_asa_digi_prop33;
 if (typeof(sc_asa_digi_prop35) != "undefined" && sc_asa_digi_prop35) s.prop35 = sc_asa_digi_prop35;
 if (typeof(sc_asa_digi_prop39) != "undefined" && sc_asa_digi_prop39) s.prop39 = sc_asa_digi_prop39;
