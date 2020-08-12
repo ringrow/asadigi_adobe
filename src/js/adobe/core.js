@@ -712,7 +712,6 @@ try{
 	/* Clear of the plug-in variables */
 	s.plugins="";
 	s.s_t_done_flg  = true; // 20141224
-	console.log("finish")
 }
 
 /****************************************************************************
@@ -1466,7 +1465,6 @@ function sc_trackAfterEvent(){
 		if(s.events.indexOf("event104") > -1){
 			s.c_w('digital_session_e104', '', -1);
 		}
-console.log("realtime", s.events);
 	}catch(e){}
 }
 
