@@ -55,7 +55,9 @@ try {
     if ((window.localStorage && window.localStorage.getItem("sdsat_stagingLibrary") == "true")) {
       s_account="asahicomalldev";
     }
-		s_account += ",asahicomall2020dev3";
+		if(document.cookie.indexOf("digital_webtest=1")>-1){
+			s_account += ",asahicomall2020dev3";
+		}
 } catch(e) {}
 
 var s=s_gi(s_account);
