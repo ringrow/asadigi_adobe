@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/05/07
+// Last Modified: 2020/07/14
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -54,14 +54,11 @@ if (typeof s == "object") temp_s = s;
 try {
     if ((window.localStorage && window.localStorage.getItem("sdsat_stagingLibrary") == "true")) {
       s_account="asahicomalldev";
-    } else if (_satellite.settings && _satellite.settings.isStaging == true) {
-      s_account="asahicomalldev";
     }
+		s_account += ",asahicomall2020dev3";
 } catch(e) {}
 
-
 var s=s_gi(s_account);
-
 
 try{
 if(typeof s.s_t_done_flg !="undefined" && s.s_t_done_flg ){
@@ -344,22 +341,6 @@ function s_doPlugins(s) {
 		}
 	}
 
-	/* special topic pages */
-	if (s.prop19) {
-		/* Acquisition of the feature that you browse to the first after the member registration */
-		var sc_c19_ev = s.c_r('sc_c19_ev');
-		if (sc_c19_ev) {
-			if (sc_c19_ev == "event22") {
-				s.prop62 = s.eVar62 = "D=c19";
-				sc_addEvents("event35");
-				s.c_w('sc_c19_ev', '');
-			} else if (sc_c19_ev == "event12") {
-				s.prop63 = s.eVar63 = "D=c19";
-				sc_addEvents("event36");
-				s.c_w('sc_c19_ev', '');
-			}
-		}
-	}
 
 	/* WEBRONZA article page */
     if (s.prop67) {
@@ -370,23 +351,6 @@ function s_doPlugins(s) {
         	s.prop26 = s.eVar26 = s.prop26 + '+"|' + window.sc_asa_digi_wr_article + '"';
         }
     }
-
-	/* Acquisition of the article or feature that you browse to the first after the member registration */
-	if(s.prop37||s.prop62){
-		var sc_c64_ev = s.c_r('sc_c64_ev');
-		if(sc_c64_ev){
-			s.prop64 = s.eVar64 = "D=c40+c19";
-			sc_addEvents("event43");
-			s.c_w('sc_c64_ev', '');
-		}
-	}else if(s.prop38||s.prop63){
-		var sc_c65_ev = s.c_r('sc_c65_ev');
-		if(sc_c65_ev){
-			s.prop65 = s.eVar65 = "D=c40+c19";
-			sc_addEvents("event44");
-			s.c_w('sc_c65_ev', '');
-		}
-	}
 
 	/* The date of start charging */
 	var sc_mp_ch = s.c_r('sc_mp_ch');
@@ -400,8 +364,6 @@ function s_doPlugins(s) {
 		/*  Free membership registration */
 		if (s.events.indexOf("event22") > -1) {
 			s.c_w('sc_c40_ev', "event22");
-			s.c_w('sc_c19_ev', "event22");
-			s.c_w('sc_c64_ev', "event22");
 			s.prop56="2|"+s.currentYear+s.currentM+s.currentD;
 		}
 
@@ -411,8 +373,6 @@ function s_doPlugins(s) {
 			else if(s.prop35 == "3") sc_addEvents("event41");
 			if (sc_c40_ev) sc_c40_ev
 			s.c_w('sc_c40_ev', "event12");
-			s.c_w('sc_c19_ev', "event12");
-			s.c_w('sc_c65_ev', "event12");
 			s.prop56="1|"+s.currentYear+s.currentM+s.currentD;
 
 			if(s.c_r('sc_c50')){
@@ -513,7 +473,6 @@ function s_doPlugins(s) {
 			//out of report.
 			if(sc_prd_domain_list[exit_link_host])
 			{
-				//e31と同時に計測するので着地ページには不要。ここで捨てる。
 				s.getPreviousValue("", "sc_ppv_v78");
 			}else{
 				if(impurl||outurl)
@@ -566,6 +525,38 @@ function s_doPlugins(s) {
 	/* core version */
 	s.prop27 = _gtm_adobe_core_version;
 
+try{
+	/* realtime block */
+	if(!!s.prop63){
+		if(s.prop63==="index"){
+			sc_addEvents("event102");
+			s.prop21 = 'topacs';
+		}else if(s.prop63==="fromIndex"){
+			sc_addEvents("event101,event103");
+		}else if(s.prop63==="E103"){
+			sc_addEvents("event103");
+		}
+		s.prop63 = 'D=c35+":"+c31';
+	}
+
+	if(!!s.events){
+		if(s.events.indexOf('event103') > -1 && s.events.indexOf('event104') > -1){
+			s.prop21 = 'D=+"afttop2_"+c74';
+		}else if(s.events.indexOf('event103') > -1){
+			if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74)){
+				var s_prop21 = s.getPageName() + '[' + location.hostname + ']';
+				s.prop21 = 'afttop1_' + s_prop21;
+			}else{
+				s.prop21 = 'afttop1';
+			}
+		}
+	}
+
+	if(typeof(sc_asa_digi_prop62) != "undefined"){
+		s.prop62 = 'D=c35+"_"+c31+":'+ sc_asa_digi_prop62 +'"';
+	}
+}catch(e){}
+
 	/* The process to copy the variable */
 	s.hier1 = "D=pageName";
 	s.eVar8 = "D=c10";
@@ -592,6 +583,8 @@ function s_doPlugins(s) {
 	if (s.prop53) s.eVar53 = "D=c53";
 	if (s.prop56) s.eVar56 = "D=c56";
 	if (s.prop61) s.eVar61 = s.list1 = "D=c61";
+	if (s.prop62) s.eVar62 = "D=c62";
+	if (s.prop63) s.eVar63 = "D=c63";
 	if (s.prop66) s.eVar66 = "D=c66";
 	if (s.prop67) s.eVar67 = "D=c67";
 	if (s.prop68) s.eVar68 = "D=c68";
@@ -601,9 +594,7 @@ function s_doPlugins(s) {
 	if (s.prop73) s.eVar73 = "D=c73";
 	if (s.list2) s.prop20 = s.eVar20 = "D=l2";
 
-
 	s.events=s.events?s.events+",event1":"event1";
-
 
 /****************************************************************************
 * AA to GA
@@ -717,11 +708,11 @@ function s_doPlugins(s) {
 		}
 	}catch(e){console.log("error:"+e);}
 
+
 	/* Clear of the plug-in variables */
 	s.plugins="";
-
 	s.s_t_done_flg  = true; // 20141224
-
+	console.log("finish")
 }
 
 /****************************************************************************
@@ -742,6 +733,8 @@ if (typeof(sc_asa_digi_prop51) != "undefined" && sc_asa_digi_prop51) s.prop51 = 
 if (typeof(sc_asa_digi_prop52) != "undefined" && sc_asa_digi_prop52) s.prop52 = sc_asa_digi_prop52;
 if (typeof(sc_asa_digi_prop53) != "undefined" && sc_asa_digi_prop53) s.prop53 = sc_asa_digi_prop53;
 if (typeof(sc_asa_digi_prop55) != "undefined" && sc_asa_digi_prop55) s.prop55 = sc_asa_digi_prop55;
+if (typeof(sc_asa_digi_prop62) != "undefined" && sc_asa_digi_prop62) s.prop62 = sc_asa_digi_prop62;
+if (typeof(sc_asa_digi_prop63) != "undefined" && sc_asa_digi_prop63) s.prop63 = sc_asa_digi_prop63;
 if (typeof(sc_asa_digi_prop66) != "undefined" && sc_asa_digi_prop66) s.prop66 = sc_asa_digi_prop66;
 if (typeof(sc_asa_digi_prop67) != "undefined" && sc_asa_digi_prop67) s.prop67 = sc_asa_digi_prop67;
 if (typeof(sc_asa_digi_prop69) != "undefined" && sc_asa_digi_prop69) s.prop69 = sc_asa_digi_prop69;
@@ -771,7 +764,12 @@ if (typeof(sc_asa_33_prop68) != "undefined" && sc_asa_33_prop68){
 	s.prop68 = sc_asa_33_prop68;
 }
 
+if (typeof(sc_asa_digi_events) !="undefined" && sc_asa_digi_events.indexOf("event104") > -1){
+	s.c_w('digital_session_e104', '', -1)
+}
+
 s.doPlugins=s_doPlugins
+
 
 /************************** PLUGINS SECTION *************************/
 
@@ -1424,6 +1422,65 @@ window.addEventListener('beforeunload', function(){
 s.c_w("s_sq","",-1);
 });
 
+/*
+
+*/
+function sc_trackAfterEvent(){
+	try{
+		/****************************************************************************
+		* E105 前のページがトップ且つトップリロード以外
+		*****************************************************************************/
+		if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74) && !sc_top_reload){
+			var _rt_arr = new Array();
+			var _rt_timer_timeout = 60000;
+			var _rt_timer_interval = 5000;//
+			var _rt_timer_wait = 0;
+			var _rt_next = [5000, 10000, 20000, 30000, 60000];
+			var _rt_timer;
+			var s_prop21 = s.getPageName() + '[' + location.hostname + ']';
+			_rt_arr.push(_rt_timer = setInterval(_rt_fnc_timer,_rt_timer_interval));
+			function _rt_fnc_timer(){
+				if(_rt_timer_timeout >= _rt_timer_wait){
+					_rt_timer_wait += _rt_timer_interval;
+					if( _rt_next.indexOf(_rt_timer_wait) > -1 ){
+						s.linkTrackVars = "prop21,prop31,prop35,prop62,prop63,prop64,eVar63,events";
+				    s.prop63 = 'D=c35+":"+c31';
+				    s.prop64 = _rt_timer_wait / 1000;
+						s.eVar63 = 'D=c63';
+						s.prop21 = 'D=+"stay"+c64+"_'+ s_prop21 +'"';
+						s.events = s.linkTrackEvents = "event105";
+				    s.tl(this, "o", "e105");
+						s.linkTrackVars = s.linkTrackEvents = s.events = s.prop62 = "";
+					}
+				}else{
+					clearInterval(_rt_arr.shift());
+				}
+			};
+		}
+		/****************************************************************************
+		* E104
+		*****************************************************************************/
+		if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74) && asa12_mode>1){
+			s.c_w('digital_session_e104', '1');
+		}
+		if(s.events.indexOf("event104") > -1){
+			s.c_w('digital_session_e104', '', -1);
+		}
+console.log("realtime", s.events);
+	}catch(e){}
+}
+
+/*
+ * Function host name from url
+ */
+s.getHostname = function(path) {
+ try{
+    var result = path.replace(/\\/g, '/').match(/\/\/([^/]*)/);
+    if (!result) return '';
+    return result[1];
+	}catch(e){}
+}
+
 /************************** INIT SECTION **************************/
 function sc_coreInit(){
 /**
@@ -1521,5 +1578,5 @@ a.d.createEvent||0<=navigator.userAgent.indexOf("Firefox/2")&&k.MouseEvent)&&(a.
 function s_gi(r){var a,k=window.s_c_il,q,p,m=r.split(","),s,u,t=0;if(k)for(q=0;!t&&q<k.length;){a=k[q];if("s_c"==a._c&&(a.account||a.oun))if(a.account&&a.account==r)t=1;else for(p=a.account?a.account:a.oun,p=a.allAccounts?a.allAccounts:p.split(","),s=0;s<m.length;s++)for(u=0;u<p.length;u++)m[s]==p[u]&&(t=1);q++}t?a.setAccount&&a.setAccount(r):a=new AppMeasurement(r);return a}AppMeasurement.getInstance=s_gi;window.s_objectID||(window.s_objectID=0);
 function s_pgicq(){var r=window,a=r.s_giq,k,q,p;if(a)for(k=0;k<a.length;k++)q=a[k],p=s_gi(q.oun),p.setAccount(q.un),p.setTagContainer(q.tagContainerName);r.s_giq=0}s_pgicq();
 if(s.abort===0){
-var s_code=s.t();
+var s_code=s.t();sc_trackAfterEvent();
 }
