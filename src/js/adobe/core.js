@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/05/07
+// Last Modified: 2020/08/12
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -179,6 +179,7 @@ function s_doPlugins(s) {
 	var sc_ref = s.Util.getQueryParam("ref");
 	var sc_cid = s.Util.getQueryParam("cid");
 	var sc_oai = s.Util.getQueryParam("oai");
+	var sc_rank = s.Util.getQueryParam("rank");
 
 	if(sc_ref!=""){
 		s.prop4	 = sc_ref;
@@ -190,6 +191,9 @@ function s_doPlugins(s) {
 	}
 	if(sc_oai!=""){
 		s.prop32 = sc_oai;
+	}
+	if(sc_rank!=""){
+		s.prop58 = sc_rank;
 	}
 
 	s.prop6=s.getFolderName(1);
@@ -591,6 +595,7 @@ function s_doPlugins(s) {
 	if (s.prop52) s.eVar52 = s.list3 = "D=c52";
 	if (s.prop53) s.eVar53 = "D=c53";
 	if (s.prop56) s.eVar56 = "D=c56";
+	if (s.prop58) s.eVar58 = "D=c58";
 	if (s.prop61) s.eVar61 = s.list1 = "D=c61";
 	if (s.prop66) s.eVar66 = "D=c66";
 	if (s.prop67) s.eVar67 = "D=c67";
@@ -693,6 +698,8 @@ function s_doPlugins(s) {
 				 'dimension60': s.prop14,
 				 'dimension61': s.prop32,
 				 'dimension62': s.prop32,
+				 'dimension63': s.prop58,
+				 'dimension64': s.prop58,
 				 'metric2': s.events.split(",").includes("event12")?1:"",
 				 'metric3': s.events.split(",").includes("event13")?1:"",
 				 'metric4': s.events.split(",").includes("event22")?1:"",
