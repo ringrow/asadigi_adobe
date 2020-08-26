@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/08/12
+// Last Modified: 2020/08/26
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -542,18 +542,42 @@ try{
 		}else if(s.prop63==="E103"){
 			sc_addEvents("event103");
 		}
-		s.prop63 = 'D=c35+":"+c31';
+		s.prop63 ="";
+		if(!s.s_t_done_flg){
+			if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74)){
+				if(s.events.indexOf('event101') > -1){
+					s.prop63 = 'D="e101:"+c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+				}else{
+					s.prop63 = 'D=c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+				}
+			}else{
+				s.prop63 = 'D=c35+":"+c31';
+			}
+		}
 	}
 
 	if(!!s.events){
 		if(s.events.indexOf('event103') > -1 && s.events.indexOf('event104') > -1){
-			s.prop21 = 'D=+"afttop2_"+c74';
+			if(/^(\/index\.html|\/sp\/index\.html)/.test(s.getPageName())){
+				s.prop21 = 'D=+"topsess_afttop2_"+c74';
+			}else{
+				s.prop21 = 'D=+"afttop2_"+c74';
+			}
 		}else if(s.events.indexOf('event103') > -1){
 			if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74)){
 				var s_prop21 = s.getPageName() + '[' + location.hostname + ']';
-				s.prop21 = 'afttop1_' + s_prop21;
+				if(asa12_mode > 1){
+					s.prop21 = 'stay0_afttop1_' + s_prop21;
+				}else{
+					s.prop21 = 'afttop1_' + s_prop21;
+				}
+				sc_event105 = true;
 			}else{
-				s.prop21 = 'afttop1';
+				if(/^(\/index\.html|\/sp\/index\.html)/.test(s.getPageName())){
+					s.prop21 = 'topsess_afttop1';
+				}else{
+					s.prop21 = 'afttop1';
+				}
 			}
 		}
 	}
@@ -1436,40 +1460,12 @@ s.c_w("s_sq","",-1);
 function sc_trackAfterEvent(){
 	try{
 		/****************************************************************************
-		* E105 前のページがトップ且つトップリロード以外
-		*****************************************************************************/
-		if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74) && !sc_top_reload){
-			var _rt_arr = new Array();
-			var _rt_timer_timeout = 60000;
-			var _rt_timer_interval = 5000;//
-			var _rt_timer_wait = 0;
-			var _rt_next = [5000, 10000, 20000, 30000, 60000];
-			var _rt_timer;
-			var s_prop21 = s.getPageName() + '[' + location.hostname + ']';
-			_rt_arr.push(_rt_timer = setInterval(_rt_fnc_timer,_rt_timer_interval));
-			function _rt_fnc_timer(){
-				if(_rt_timer_timeout >= _rt_timer_wait){
-					_rt_timer_wait += _rt_timer_interval;
-					if( _rt_next.indexOf(_rt_timer_wait) > -1 ){
-						s.linkTrackVars = "prop21,prop31,prop35,prop62,prop63,prop64,eVar63,events";
-				    s.prop63 = 'D=c35+":"+c31';
-				    s.prop64 = _rt_timer_wait / 1000;
-						s.eVar63 = 'D=c63';
-						s.prop21 = 'D=+"stay"+c64+"_'+ s_prop21 +'"';
-						s.events = s.linkTrackEvents = "event105";
-				    s.tl(this, "o", "e105");
-						s.linkTrackVars = s.linkTrackEvents = s.events = s.prop62 = "";
-					}
-				}else{
-					clearInterval(_rt_arr.shift());
-				}
-			};
-		}
-		/****************************************************************************
 		* E104
 		*****************************************************************************/
-		if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74) && asa12_mode>1){
-			s.c_w('digital_session_e104', '1');
+		if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74) && asa12_mode>1 && /^(\/index\.html|\/sp\/index\.html)/.test(s.getPageName())===false ){
+			s_e104_date = new Date();
+			s_e104_date.setTime(s_e104_date.getTime()+(30*60*1000));
+			s.c_w('digital_session_e104', '1', s_e104_date);
 		}
 		if(s.events.indexOf("event104") > -1){
 			s.c_w('digital_session_e104', '', -1);
