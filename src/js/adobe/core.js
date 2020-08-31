@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/08/26
+// Last Modified: 2020/08/27
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -542,19 +542,27 @@ try{
 		}else if(s.prop63==="E103"){
 			sc_addEvents("event103");
 		}
-		s.prop63 ="";
 		if(!s.s_t_done_flg){
 			if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74)){
 				if(s.events.indexOf('event101') > -1){
-					s.prop63 = 'D="e101:"+c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+					if(typeof sc_asa_digi_prop62 !="undefined" && sc_asa_digi_prop62 !=""){
+						s.prop63 = 'D="e101:"+c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+					}else{
+						s.prop63 = 'D=c35+":"+c31';
+					}
 				}else{
-					s.prop63 = 'D=c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+					if(typeof sc_asa_digi_prop62 !="undefined" && sc_asa_digi_prop62 !=""){
+						s.prop63 = 'D=c35+":"+c31+":'+ sc_asa_digi_prop62 +'"';
+					}else{
+						s.prop63 = 'D=c35+":"+c31';
+					}
 				}
 			}else{
 				s.prop63 = 'D=c35+":"+c31';
 			}
 		}
 	}
+
 
 	if(!!s.events){
 		if(s.events.indexOf('event103') > -1 && s.events.indexOf('event104') > -1){
