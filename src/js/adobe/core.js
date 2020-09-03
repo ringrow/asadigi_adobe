@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/08/27
+// Last Modified: 2020/09/04
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -55,7 +55,7 @@ try {
     if ((window.localStorage && window.localStorage.getItem("sdsat_stagingLibrary") == "true")) {
       s_account="asahicomalldev";
     }
-    if(document.cookie.indexOf("digital_webtest=1")>-1){
+    if(document.cookie.indexOf("digital_webtest2=1")>-1 || document.cookie.indexOf("digital_webtest2=2")>-1 || document.cookie.indexOf("digital_webtest2=3")>-1 || document.cookie.indexOf("digital_webtest2=4")>-1){
       s_account += ",asahicomall2020dev3";
     }
 } catch(e) {}
