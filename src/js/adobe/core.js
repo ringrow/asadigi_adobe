@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/09/04
+// Last Modified: 2020/09/28
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -54,9 +54,6 @@ if (typeof s == "object") temp_s = s;
 try {
     if ((window.localStorage && window.localStorage.getItem("sdsat_stagingLibrary") == "true")) {
       s_account="asahicomalldev";
-    }
-    if(document.cookie.indexOf("digital_webtest2=1")>-1 || document.cookie.indexOf("digital_webtest2=2")>-1 || document.cookie.indexOf("digital_webtest2=3")>-1 || document.cookie.indexOf("digital_webtest2=4")>-1){
-      s_account += ",asahicomall2020dev3";
     }
 } catch(e) {}
 
@@ -574,7 +571,8 @@ try{
 		}else if(s.events.indexOf('event103') > -1){
 			if(/^(\/index\.html|\/sp\/index\.html).+/.test(s.prop74)){
 				var s_prop21 = s.getPageName() + '[' + location.hostname + ']';
-				if(asa12_mode > 1){
+				//有料会員判定に合格したら
+				if((typeof asa12_mode != "undefined" && asa12_mode > 1) || s.prop35 == 1 ){
 					s.prop21 = 'stay0_afttop1_' + s_prop21;
 				}else{
 					s.prop21 = 'afttop1_' + s_prop21;
@@ -803,13 +801,15 @@ if (typeof(sc_asa_33_event) != "undefined" && sc_asa_33_event){
 if (typeof(sc_asa_33_prop68) != "undefined" && sc_asa_33_prop68){
 	s.prop68 = sc_asa_33_prop68;
 }
+/********************************************************************
+ * realizer variables
+ *******************************************************************/
 
 if (typeof(sc_asa_digi_events) !="undefined" && sc_asa_digi_events.indexOf("event104") > -1){
-	s.c_w('digital_session_e104', '', -1)
+	s.c_w('digital_session_e104', '', -1);
 }
 
 s.doPlugins=s_doPlugins
-
 
 /************************** PLUGINS SECTION *************************/
 
