@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/09/28
+// Last Modified: 2020/10/05
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -218,9 +218,26 @@ function s_doPlugins(s) {
 		if (s.prop34 == "no value") s.prop34 = '';
 	}
 	if (s.prop34) {
-		sc_addEvents("event19,event902");
-		if (s.prop34 == "fn1") sc_addEvents("event20");
-		if (s.prop34 == "event60") sc_addEvents("event60");
+		sc_addEvents('event19,event902');
+		if (s.prop34 === 'fn1'){
+			 //Silver .Lite.Member
+			 sc_addEvents('event20,event62');
+		}else	if (s.prop34 === 'fn2'){
+			 //Silver .Logout.Member
+			 sc_addEvents('event63');
+		}else	if (s.prop34 === 'fn3'){
+			 //Silver .NonRegi
+			 sc_addEvents('event64');
+		}else	if (s.prop34 === 'fn9'){
+			 //Gold .NonRegi
+			 sc_addEvents("event65");
+		}else	if (s.prop34 === 'fn10'){
+			 //Gold .Lite.LiteOut
+			 sc_addEvents('event66');
+		}else if (s.prop34 === 'event60'){
+			 //AB test LP
+			 sc_addEvents('event60');
+		}
 	}
 
 	/* Membership type */
@@ -781,6 +798,7 @@ if (typeof(sc_asa_digi_prop72) != "undefined" && sc_asa_digi_prop72) s.prop72 = 
 if (typeof(sc_asa_digi_prop73) != "undefined" && sc_asa_digi_prop73) s.prop73 = sc_asa_digi_prop73;
 if (typeof(sc_asa_digi_eVar10) != "undefined" && sc_asa_digi_eVar10) s.eVar10 = sc_asa_digi_eVar10;
 if (typeof(sc_asa_digi_eVar14) != "undefined" && sc_asa_digi_eVar14) s.eVar14 = sc_asa_digi_eVar14;
+if (typeof(sc_asa_digi_eVar77) != "undefined" && sc_asa_digi_eVar77) s.eVar77 = sc_asa_digi_eVar77;
 if (typeof(sc_asa_digi_products) != "undefined" && sc_asa_digi_products) s.products = sc_asa_digi_products;
 if (typeof(sc_asa_digi_purchaseID) != "undefined" && sc_asa_digi_purchaseID) s.purchaseID = sc_asa_digi_purchaseID;
 if (typeof(sc_asa_digi_pageType) != "undefined" && sc_asa_digi_pageType) s.pageType = sc_asa_digi_pageType;
