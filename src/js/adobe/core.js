@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2020/09/28
+// Last Modified: 2021/01/28
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -39,7 +39,8 @@ var sc_prd_domain_list={
 "hinotori.asahi.com":               "prod",
 "krs.bz":                           "prod",
 "craft.asahi.com":                  "prod",
-"www.41fp.com":                     "prod"
+"www.41fp.com":                     "prod",
+"aef.asahi.com":                    "prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
@@ -218,9 +219,26 @@ function s_doPlugins(s) {
 		if (s.prop34 == "no value") s.prop34 = '';
 	}
 	if (s.prop34) {
-		sc_addEvents("event19,event902");
-		if (s.prop34 == "fn1") sc_addEvents("event20");
-		if (s.prop34 == "event60") sc_addEvents("event60");
+		sc_addEvents('event19,event902');
+		if (s.prop34 === 'fn1'){
+			 //Silver .Lite.Member
+			 sc_addEvents('event20,event62');
+		}else	if (s.prop34 === 'fn2'){
+			 //Silver .Logout.Member
+			 sc_addEvents('event63');
+		}else	if (s.prop34 === 'fn3'){
+			 //Silver .NonRegi
+			 sc_addEvents('event64');
+		}else	if (s.prop34 === 'fn9'){
+			 //Gold .NonRegi
+			 sc_addEvents("event65");
+		}else	if (s.prop34 === 'fn10'){
+			 //Gold .Lite.LiteOut
+			 sc_addEvents('event66');
+		}else if (s.prop34 === 'event60'){
+			 //AB test LP
+			 sc_addEvents('event60');
+		}
 	}
 
 	/* Membership type */
@@ -614,6 +632,7 @@ try{
 	if (s.prop39) s.eVar39 = "D=c39";
 	if (s.prop45) s.eVar45 = s.prop46 = s.eVar46 = "D=c45";
 	if (s.prop47) s.eVar47 = "D=c47";
+	if (s.prop48) s.eVar48 = "D=c48";
 	if (s.prop51) s.eVar51 = "D=c51";
 	if (s.prop52) s.eVar52 = s.list3 = "D=c52";
 	if (s.prop53) s.eVar53 = "D=c53";
@@ -723,6 +742,10 @@ try{
 				 'dimension62': s.prop32,
 				 'dimension63': s.prop58,
 				 'dimension64': s.prop58,
+				 'dimension69': s.prop69,
+				 'dimension70': s.prop69,
+				 'dimension71': s.prop70,
+				 'dimension72': s.prop70,
 				 'metric2': s.events.split(",").includes("event12")?1:"",
 				 'metric3': s.events.split(",").includes("event13")?1:"",
 				 'metric4': s.events.split(",").includes("event22")?1:"",
@@ -767,6 +790,7 @@ if (typeof(sc_asa_digi_prop39) != "undefined" && sc_asa_digi_prop39) s.prop39 = 
 if (typeof(sc_asa_digi_prop40) != "undefined" && sc_asa_digi_prop40) s.prop40 = sc_asa_digi_prop40;
 if (typeof(sc_asa_digi_prop41) != "undefined" && sc_asa_digi_prop41) s.prop41 = sc_asa_digi_prop41;
 if (typeof(sc_asa_digi_prop42) != "undefined" && sc_asa_digi_prop42) s.prop42 = sc_asa_digi_prop42;
+if (typeof(sc_asa_digi_prop48) != "undefined" && sc_asa_digi_prop48) s.prop48 = sc_asa_digi_prop48;
 if (typeof(sc_asa_digi_prop51) != "undefined" && sc_asa_digi_prop51) s.prop51 = sc_asa_digi_prop51;
 if (typeof(sc_asa_digi_prop52) != "undefined" && sc_asa_digi_prop52) s.prop52 = sc_asa_digi_prop52;
 if (typeof(sc_asa_digi_prop53) != "undefined" && sc_asa_digi_prop53) s.prop53 = sc_asa_digi_prop53;
@@ -781,6 +805,7 @@ if (typeof(sc_asa_digi_prop72) != "undefined" && sc_asa_digi_prop72) s.prop72 = 
 if (typeof(sc_asa_digi_prop73) != "undefined" && sc_asa_digi_prop73) s.prop73 = sc_asa_digi_prop73;
 if (typeof(sc_asa_digi_eVar10) != "undefined" && sc_asa_digi_eVar10) s.eVar10 = sc_asa_digi_eVar10;
 if (typeof(sc_asa_digi_eVar14) != "undefined" && sc_asa_digi_eVar14) s.eVar14 = sc_asa_digi_eVar14;
+if (typeof(sc_asa_digi_eVar77) != "undefined" && sc_asa_digi_eVar77) s.eVar77 = sc_asa_digi_eVar77;
 if (typeof(sc_asa_digi_products) != "undefined" && sc_asa_digi_products) s.products = sc_asa_digi_products;
 if (typeof(sc_asa_digi_purchaseID) != "undefined" && sc_asa_digi_purchaseID) s.purchaseID = sc_asa_digi_purchaseID;
 if (typeof(sc_asa_digi_pageType) != "undefined" && sc_asa_digi_pageType) s.pageType = sc_asa_digi_pageType;
