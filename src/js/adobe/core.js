@@ -40,7 +40,8 @@ var sc_prd_domain_list={
 "krs.bz":                           "prod",
 "craft.asahi.com":                  "prod",
 "www.41fp.com":                     "prod",
-"aef.asahi.com":                    "prod"
+"aef.asahi.com":                    "prod",
+"bizble.asahi.com":									"prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
