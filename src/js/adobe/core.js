@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/02/15
+// Last Modified: 2021/02/25
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -401,26 +401,7 @@ function s_doPlugins(s) {
 			  s.prop50=s.c_r('sc_c50');
 			  s.c_w('sc_c50','',-1)
 			}
-
 		}
-
-		/* cancellation of  paid membership contract */
-		if (s.events.indexOf("event13") > -1) {
-			var sc_diffDate = sc_diffMonth = sc_d_year = '';
-			var sc_mp_sd = s.c_r('sc_mp_sd');
-			if (sc_mp_sd) {
-				var sc_mp_sd_list = sc_mp_sd.split("/");
-				if (sc_mp_sd_list.length == 2) {
-					sc_d_year = parseInt(s.currentYear, 10) - parseInt(sc_mp_sd_list[0], 10);
-					sc_diffMonth = parseInt(s.currentM, 10) - parseInt(sc_mp_sd_list[1], 10);
-					if (sc_d_year > 0) sc_diffMonth = (sc_d_year * 12) + sc_diffMonth;
-				}
-			}
-			if (sc_diffMonth == 0) sc_diffMonth = "same month";
-			if (!sc_diffMonth) sc_diffMonth = "uk";
-			s.prop29 = s.eVar29 = sc_diffMonth;
-		}
-
 	}
 
 	/* Acquisition of the page title */
@@ -626,6 +607,7 @@ try{
 	if (s.prop19) s.eVar19 = "D=c19";
 	if (s.prop22) s.eVar22 = "D=c22";
 	if (s.prop24) s.eVar24 = "D=c24";
+	if (s.prop29) s.eVar29 = "D=c29";
 	if (s.prop32) s.eVar32 = "D=c32";
 	if (s.prop33) s.eVar33 = "D=c33";
 	if (s.prop34) s.eVar34 = "D=c34";
@@ -785,6 +767,7 @@ if (typeof(sc_asa_digi_events) != "undefined" && sc_asa_digi_events) s.events = 
 if (typeof(sc_asa_digi_prop18) != "undefined" && sc_asa_digi_prop18) s.prop18 = sc_asa_digi_prop18;
 if (typeof(sc_asa_digi_prop19) != "undefined" && sc_asa_digi_prop19) s.prop19 = sc_asa_digi_prop19;
 if (typeof(sc_asa_digi_prop24) != "undefined" && sc_asa_digi_prop24) s.prop24 = sc_asa_digi_prop24;
+if (typeof(sc_asa_digi_prop29) != "undefined" && sc_asa_digi_prop29) s.prop29 = sc_asa_digi_prop29;
 if (typeof(sc_asa_digi_prop33) != "undefined" && sc_asa_digi_prop33) s.prop33 = sc_asa_digi_prop33;
 if (typeof(sc_asa_digi_prop35) != "undefined" && sc_asa_digi_prop35) s.prop35 = sc_asa_digi_prop35;
 if (typeof(sc_asa_digi_prop39) != "undefined" && sc_asa_digi_prop39) s.prop39 = sc_asa_digi_prop39;
