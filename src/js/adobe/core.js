@@ -592,7 +592,7 @@ try{
 		s.prop62 = 'D=c35+"_"+c31+":'+ sc_asa_digi_prop62 +'"';
 	}
 
-	if(typeof(s.prop21) !="undefined" && s.prop21 !=""){
+	if(typeof(s.prop21) !="undefined" && s.prop21.length > 0){
 		s.prop21=decodeURI(s.prop21);
 	}
 
