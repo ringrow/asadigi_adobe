@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/03/09
+// Last Modified: 2021/03/10
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -39,7 +39,7 @@ var sc_prd_domain_list={
 "www.41fp.com":                     "prod",
 "aef.asahi.com":                    "prod",
 "bizble.asahi.com":                 "prod",
-"ciy.digital.asahi.com":           "prod"
+"ciy.digital.asahi.com":            "prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
@@ -752,7 +752,6 @@ try{
 				 'metric19': s.events.split(",").includes("event79")?1:"",
 				 '&uid':s.prop36
 			});
-			ga("ga_tracker.send","pageview");
 		}
 	}catch(e){console.log("error:"+e);}
 
@@ -1601,5 +1600,5 @@ a.d.createEvent||0<=navigator.userAgent.indexOf("Firefox/2")&&k.MouseEvent)&&(a.
 function s_gi(r){var a,k=window.s_c_il,q,p,m=r.split(","),s,u,t=0;if(k)for(q=0;!t&&q<k.length;){a=k[q];if("s_c"==a._c&&(a.account||a.oun))if(a.account&&a.account==r)t=1;else for(p=a.account?a.account:a.oun,p=a.allAccounts?a.allAccounts:p.split(","),s=0;s<m.length;s++)for(u=0;u<p.length;u++)m[s]==p[u]&&(t=1);q++}t?a.setAccount&&a.setAccount(r):a=new AppMeasurement(r);return a}AppMeasurement.getInstance=s_gi;window.s_objectID||(window.s_objectID=0);
 function s_pgicq(){var r=window,a=r.s_giq,k,q,p;if(a)for(k=0;k<a.length;k++)q=a[k],p=s_gi(q.oun),p.setAccount(q.un),p.setTagContainer(q.tagContainerName);r.s_giq=0}s_pgicq();
 if(s.abort===0){
-var s_code=s.t();sc_trackAfterEvent();
+var s_code=s.t();ga("ga_tracker.send","pageview");sc_trackAfterEvent();
 }
