@@ -735,6 +735,8 @@ try{
 				 'dimension74': s.prop29,
 				 'dimension75': s.prop39,
 				 'dimension76': s.prop39,
+				 'dimension77': s.prop53,
+				 'dimension78': s.prop53,
 				 'metric2': s.events.split(",").includes("event12")?1:"",
 				 'metric3': s.events.split(",").includes("event13")?1:"",
 				 'metric4': s.events.split(",").includes("event22")?1:"",
