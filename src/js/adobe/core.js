@@ -39,7 +39,8 @@ var sc_prd_domain_list={
 "www.41fp.com":                     "prod",
 "aef.asahi.com":                    "prod",
 "bizble.asahi.com":                 "prod",
-"ciy.digital.asahi.com":            "prod"
+"ciy.digital.asahi.com":            "prod",
+"backoffice.asahi.com":             "prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
