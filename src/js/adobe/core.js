@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/03/10
+// Last Modified: 2021/03/23
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -419,8 +419,6 @@ function s_doPlugins(s) {
 		s.prop9 = sc_prop_bytes(s.prop9);
 	}
 
-	s.prop30 = s.eVar30 = parseInt(s.currentD, 10);
-
 	/* keywords of articles */
 	if(s.prop53){
 		if(s.prop53.length > 33){
@@ -458,19 +456,18 @@ function s_doPlugins(s) {
 	var outurl = url = s.linkURL ? s.linkURL.match(/traffic\.outbrain\.com/) : '';
 
 	if(exturl||impurl){
-		s.linkTrackVars = "prop5,prop16,prop17,eVar5,eVar16,eVar17,events";
+		s.linkTrackVars = "prop16,prop17,eVar16,eVar17,events";
 		s.linkTrackEvents = s.events = "event31";
-		s.prop5 = exturl?exturl:impurl;
 		s.prop16 = s.pageName;
 		s.prop17 = s.prop9;
-		s.eVar5 = "D=c5";
 		s.eVar16 = "D=c16";
 		s.eVar17 = "D=c17";
 
 		if(sc_trackReadPrevPageExt(s.pageName))
 		{
+			var prev_page_ext = exturl?exturl:impurl;
 			var reg = /https?:\/\/([^/]+)\/.*/;
-			var exit_link_host = s.prop5.replace(reg,"$1");
+			var exit_link_host = prev_page_ext.replace(reg,"$1");
 			//out of report.
 			if(sc_prd_domain_list[exit_link_host])
 			{
@@ -606,11 +603,13 @@ try{
 	s.eVar55 = "D=c55";
 	s.eVar71 = "D=c71";
 	if (s.prop4) s.campaign = s.eVar1 = "D=c4";
+	if (s.prop5) s.eVar5  = "D=c5";
 	if (s.prop18) s.eVar18 = "D=c18";
 	if (s.prop19) s.eVar19 = "D=c19";
 	if (s.prop22) s.eVar22 = "D=c22";
 	if (s.prop24) s.eVar24 = "D=c24";
 	if (s.prop29) s.eVar29 = "D=c29";
+	if (s.prop30) s.eVar30 = "D=c30";
 	if (s.prop32) s.eVar32 = "D=c32";
 	if (s.prop33) s.eVar33 = "D=c33";
 	if (s.prop34) s.eVar34 = "D=c34";
@@ -732,6 +731,12 @@ try{
 				 'dimension70': s.prop69,
 				 'dimension71': s.prop70,
 				 'dimension72': s.prop70,
+				 'dimension73': s.prop29,
+				 'dimension74': s.prop29,
+				 'dimension75': s.prop39,
+				 'dimension76': s.prop39,
+				 'dimension77': s.prop53,
+				 'dimension78': s.prop53,
 				 'metric2': s.events.split(",").includes("event12")?1:"",
 				 'metric3': s.events.split(",").includes("event13")?1:"",
 				 'metric4': s.events.split(",").includes("event22")?1:"",
@@ -752,6 +757,7 @@ try{
 				 'metric19': s.events.split(",").includes("event79")?1:"",
 				 '&uid':s.prop36
 			});
+			ga("ga_tracker.send","pageview");
 		}
 	}catch(e){console.log("error:"+e);}
 
@@ -766,10 +772,12 @@ try{
 *****************************************************************************/
 // if (typeof(sc_asa_digi_channel) != "undefined" && sc_asa_digi_channel) s.channel = sc_asa_digi_channel;
 if (typeof(sc_asa_digi_events) != "undefined" && sc_asa_digi_events) s.events = sc_asa_digi_events;
+if (typeof(sc_asa_digi_prop5 ) != "undefined" && sc_asa_digi_prop5 ) s.prop5  = sc_asa_digi_prop5;
 if (typeof(sc_asa_digi_prop18) != "undefined" && sc_asa_digi_prop18) s.prop18 = sc_asa_digi_prop18;
 if (typeof(sc_asa_digi_prop19) != "undefined" && sc_asa_digi_prop19) s.prop19 = sc_asa_digi_prop19;
 if (typeof(sc_asa_digi_prop24) != "undefined" && sc_asa_digi_prop24) s.prop24 = sc_asa_digi_prop24;
 if (typeof(sc_asa_digi_prop29) != "undefined" && sc_asa_digi_prop29) s.prop29 = sc_asa_digi_prop29;
+if (typeof(sc_asa_digi_prop30) != "undefined" && sc_asa_digi_prop30) s.prop30 = sc_asa_digi_prop30;
 if (typeof(sc_asa_digi_prop33) != "undefined" && sc_asa_digi_prop33) s.prop33 = sc_asa_digi_prop33;
 if (typeof(sc_asa_digi_prop35) != "undefined" && sc_asa_digi_prop35) s.prop35 = sc_asa_digi_prop35;
 if (typeof(sc_asa_digi_prop39) != "undefined" && sc_asa_digi_prop39) s.prop39 = sc_asa_digi_prop39;
@@ -1600,5 +1608,5 @@ a.d.createEvent||0<=navigator.userAgent.indexOf("Firefox/2")&&k.MouseEvent)&&(a.
 function s_gi(r){var a,k=window.s_c_il,q,p,m=r.split(","),s,u,t=0;if(k)for(q=0;!t&&q<k.length;){a=k[q];if("s_c"==a._c&&(a.account||a.oun))if(a.account&&a.account==r)t=1;else for(p=a.account?a.account:a.oun,p=a.allAccounts?a.allAccounts:p.split(","),s=0;s<m.length;s++)for(u=0;u<p.length;u++)m[s]==p[u]&&(t=1);q++}t?a.setAccount&&a.setAccount(r):a=new AppMeasurement(r);return a}AppMeasurement.getInstance=s_gi;window.s_objectID||(window.s_objectID=0);
 function s_pgicq(){var r=window,a=r.s_giq,k,q,p;if(a)for(k=0;k<a.length;k++)q=a[k],p=s_gi(q.oun),p.setAccount(q.un),p.setTagContainer(q.tagContainerName);r.s_giq=0}s_pgicq();
 if(s.abort===0){
-var s_code=s.t();ga("ga_tracker.send","pageview");sc_trackAfterEvent();
+var s_code=s.t();sc_trackAfterEvent();
 }
