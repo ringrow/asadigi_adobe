@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/03/23
+// Last Modified: 2021/04/26
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -39,7 +39,8 @@ var sc_prd_domain_list={
 "www.41fp.com":                     "prod",
 "aef.asahi.com":                    "prod",
 "bizble.asahi.com":                 "prod",
-"ciy.digital.asahi.com":            "prod"
+"ciy.digital.asahi.com":            "prod",
+"backoffice.asahi.com":             "prod"
 }
 
 var S_ENV = sc_prd_domain_list[location.hostname];
