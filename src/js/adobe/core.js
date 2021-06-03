@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/04/26
+// Last Modified: 2021/05/06
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -219,7 +219,7 @@ function s_doPlugins(s) {
 		if (s.prop34 == "no value") s.prop34 = '';
 	}
 	if (s.prop34) {
-		sc_addEvents('event19,event902');
+		sc_addEvents('event19');
 		if (s.prop34 === 'fn1'){
 			 //Silver .Lite.Member
 			 sc_addEvents('event20,event62');
@@ -235,9 +235,6 @@ function s_doPlugins(s) {
 		}else	if (s.prop34 === 'fn10'){
 			 //Gold .Lite.LiteOut
 			 sc_addEvents('event66');
-		}else if (s.prop34 === 'event60'){
-			 //AB test LP
-			 sc_addEvents('event60');
 		}
 	}
 
@@ -352,11 +349,11 @@ function s_doPlugins(s) {
 		if (sc_c40_ev) {
 			if (sc_c40_ev == "event22") {
 				s.prop37 = s.eVar37 = "D=c40";
-				sc_addEvents("event32,event901");
+				sc_addEvents("event32");
 				s.c_w('sc_c40_ev', '');
 			} else if (sc_c40_ev == "event12") {
 				s.prop38 = s.eVar38 = "D=c40";
-				sc_addEvents("event33,event901");
+				sc_addEvents("event33");
 				s.c_w('sc_c40_ev', '');
 			}
 		}
