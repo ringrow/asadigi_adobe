@@ -10,7 +10,7 @@ _gtm_adobe_core_version+="_mixed";
 Copyright 1996-2015 Adobe, Inc. All Rights Reserved
 More info available at http://www.omniture.com */
 
-// Last Modified: 2021/05/06
+// Last Modified: 2021/06/03
 
 //Measurementdomainlist
 var sc_prd_domain_list={
@@ -27,14 +27,10 @@ var sc_prd_domain_list={
 "360vr.asahi.com":                  "prod",
 "que.digital.asahi.com":            "prod",
 "sya.asahi.com":                    "prod",
-"relife-subscription.asahi.com":    "prod",
-"jisoku.asahi.com":                 "prod",
 "aginggracefully.asahi.com":        "prod",
 "ciy.asahi.com":                    "prod",
-"www.kentaku.co.jp":                "prod",
 "ex.asahi.com":                     "prod",
 "change.asahi.com":                 "prod",
-"hinotori.asahi.com":               "prod",
 "craft.asahi.com":                  "prod",
 "www.41fp.com":                     "prod",
 "aef.asahi.com":                    "prod",
